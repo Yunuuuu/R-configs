@@ -1,4 +1,4 @@
-set_envpath <- function(env_var, ...) {
+add_envpath <- function(env_var, ...) {
     if (any(lengths(list(...)) > 1L)) {
         stop("Element of length one is expected", call. = FALSE)
     }
@@ -20,9 +20,9 @@ set_envpath <- function(env_var, ...) {
 conda_env_dir <- "~/anaconda3/envs" # nolint
 
 # R-release environment path -----------------------------
-# conda create --name R-release -c conda-forge r-base git radian
+# conda create --name R-release -c conda-forge r-base radian gcc
 conda_renv <- file.path(conda_env_dir, "R-release")
-set_envpath("PKG_CONFIG_PATH", conda_renv, "lib", "pkgconfig")
+add_envpath("PKG_CONFIG_PATH", conda_renv, "lib", "pkgconfig")
 
 # pkg-specific PKG_CONFIG_PATH ---------------------------
 # these packages are not compitable with current conda R environment, install
@@ -31,16 +31,16 @@ set_envpath("PKG_CONFIG_PATH", conda_renv, "lib", "pkgconfig")
 # gert environment variable
 # conda create -n libgit2 -c conda-forge libgit2
 libgit2 <- file.path(conda_env_dir, "libgit2")
-set_envpath("PKG_CONFIG_PATH", libgit2, "lib", "pkgconfig")
-set_envpath("LD_LIBRARY_PATH", libgit2, "lib")
+add_envpath("PKG_CONFIG_PATH", libgit2, "lib", "pkgconfig")
+add_envpath("LD_LIBRARY_PATH", libgit2, "lib")
 
 # textshaping environment variable
 # harfbuzz
 # conda create -n harfbuzz -c conda-forge harfbuzz
 harfbuzz <- file.path(conda_env_dir, "harfbuzz")
-set_envpath("PKG_CONFIG_PATH", harfbuzz, "lib", "pkgconfig")
+add_envpath("PKG_CONFIG_PATH", harfbuzz, "lib", "pkgconfig")
 # fribidi
 # conda create -n fribidi -c conda-forge fribidi
 fribidi <- file.path(conda_env_dir, "fribidi")
-set_envpath("PKG_CONFIG_PATH", fribidi, "lib", "pkgconfig")
+add_envpath("PKG_CONFIG_PATH", fribidi, "lib", "pkgconfig")
 
