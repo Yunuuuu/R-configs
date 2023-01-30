@@ -4,14 +4,19 @@ add_envpath <- function(env_var, ...) {
     }
     add_path <- file.path(...)
     add_path <- path.expand(add_path)
-    env_var_value <- Sys.getenv(env_var, unset = "")
-    if (identical(env_var_value, "")) {
+    env_var_value <- Sys.getenv(env_var, unset = "", names = FALSE)
+    if (env_var_value == "") {
         path <- add_path
     } else {
-        path <- paste0(add_path, switch(.Platform$OS.type,
-            windows = ";",
-            unix = ":"
-        ), env_var_value)
+        path <- paste0(
+            add_path,
+            if (identical(.Platform$OS.type, "windows")) {
+                ";"
+            } else {
+                ":"
+            },
+            env_var_value
+        )
     }
     expr <- quote(Sys.setenv())
     expr[[env_var]] <- path
@@ -27,7 +32,7 @@ add_envpath("PKG_CONFIG_PATH", conda_renv, "lib", "pkgconfig")
 # pkg-specific PKG_CONFIG_PATH ---------------------------
 # these packages are not compitable with current conda R environment, install
 # this package in another conda environment and add the corresponding
-# PKG_CONFIG_PATH 
+# PKG_CONFIG_PATH
 # gert environment variable
 # conda create -n libgit2 -c conda-forge libgit2
 libgit2 <- file.path(conda_env_dir, "libgit2")
@@ -43,4 +48,3 @@ add_envpath("PKG_CONFIG_PATH", harfbuzz, "lib", "pkgconfig")
 # conda create -n fribidi -c conda-forge fribidi
 fribidi <- file.path(conda_env_dir, "fribidi")
 add_envpath("PKG_CONFIG_PATH", fribidi, "lib", "pkgconfig")
-
