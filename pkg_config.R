@@ -33,6 +33,7 @@ add_envpath("PKG_CONFIG_PATH", conda_renv, "lib", "pkgconfig")
 # these packages are not compitable with current conda R environment, install
 # this package in another conda environment and add the corresponding
 # PKG_CONFIG_PATH
+
 # gert environment variable
 # conda create -n libgit2 -c conda-forge libgit2
 libgit2 <- file.path(conda_env_dir, "libgit2")
