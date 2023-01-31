@@ -24,11 +24,6 @@ add_envpath <- function(env_var, ...) {
 }
 conda_env_dir <- "~/anaconda3/envs" # nolint
 
-# R-release environment path -----------------------------
-# conda create --name R-release -c conda-forge r-base radian gcc
-conda_renv <- file.path(conda_env_dir, "R-release")
-add_envpath("PKG_CONFIG_PATH", conda_renv, "lib", "pkgconfig")
-
 # pkg-specific PKG_CONFIG_PATH ---------------------------
 # these packages are not compitable with current conda R environment, install
 # this package in another conda environment and add the corresponding
@@ -49,3 +44,8 @@ add_envpath("PKG_CONFIG_PATH", harfbuzz, "lib", "pkgconfig")
 # conda create -n fribidi -c conda-forge fribidi
 fribidi <- file.path(conda_env_dir, "fribidi")
 add_envpath("PKG_CONFIG_PATH", fribidi, "lib", "pkgconfig")
+
+# R-release environment path -----------------------------
+# conda create --name R-release -c conda-forge r-base radian gcc
+conda_renv <- file.path(conda_env_dir, "R-release")
+add_envpath("PKG_CONFIG_PATH", conda_renv, "lib", "pkgconfig")
