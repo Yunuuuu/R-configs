@@ -5,9 +5,7 @@ add_envpath <- function(env_var, ...) {
     add_path <- file.path(...)
     add_path <- path.expand(add_path)
     env_var_value <- Sys.getenv(env_var, unset = "", names = FALSE)
-    if (env_var_value == "") {
-        path <- add_path
-    } else {
+    if (nzchar(env_var_value)) {
         path <- paste0(
             add_path,
             if (.Platform$OS.type == "windows") {
@@ -17,6 +15,8 @@ add_envpath <- function(env_var, ...) {
             },
             env_var_value
         )
+    } else {
+        path <- add_path
     }
     expr <- quote(Sys.setenv())
     expr[[env_var]] <- path
