@@ -10,7 +10,7 @@ add_envpath <- function(env_var, ...) {
     } else {
         path <- paste0(
             add_path,
-            if (identical(.Platform$OS.type, "windows")) {
+            if (.Platform$OS.type == "windows") {
                 ";"
             } else {
                 ":"
