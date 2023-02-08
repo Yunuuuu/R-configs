@@ -46,16 +46,16 @@ fribidi <- file.path(conda_env_dir, "fribidi")
 add_envpath("PKG_CONFIG_PATH", fribidi, "lib", "pkgconfig")
 
 # Some specific packages
-# For udunits2 we neeed install udunits2
+# For udunits2 and units we neeed install udunits2
 # https://github.com/r-quantities/units/issues/1#issuecomment-330435512
+# https://github.com/pacificclimate/Rudunits2/issues/20#issuecomment-343684979
 # conda create -n udunits2 -c conda-forge udunits2
 udunits2 <- file.path(conda_env_dir, "udunits2")
 add_envpath("PKG_CONFIG_PATH", udunits2, "lib", "pkgconfig")
-add_envpath("LD_LIBRARY_PATH", udunits2, "lib")
-dyn.load(file.path(udunits2, "lib", "libudunits2.so.0"))
+# add_envpath("LD_LIBRARY_PATH", udunits2, "lib")
+# dyn.load(file.path(udunits2, "lib", "libudunits2.so.0"))
 # install.packages("udunits2",
 #     type = "source",
-#     repo = "cran.rstudio.com",
 #     configure.args = c(
 #         paste0(
 #             c("--with-udunits2-lib", "--with-udunits2-include"),
@@ -65,6 +65,10 @@ dyn.load(file.path(udunits2, "lib", "libudunits2.so.0"))
 #         )
 #     )
 # )
+
+# in .bashrc
+# export R_LD_LIBRARY_PATH=${R_LD_LIBRARY_PATH}:/home/pengyushan/miniconda3/envs/udunits2/lib
+
 
 # R-release environment path -----------------------------
 # conda create --name R-release -c conda-forge r-base radian gcc
