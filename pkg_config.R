@@ -67,8 +67,7 @@ add_envpath("PKG_CONFIG_PATH", udunits2, "lib", "pkgconfig")
 # )
 
 # in .bashrc
-# export R_LD_LIBRARY_PATH=${R_LD_LIBRARY_PATH}:/home/pengyushan/miniconda3/envs/udunits2/lib
-
+# export R_LD_LIBRARY_PATH=${R_LD_LIBRARY_PATH}:~/miniconda3/envs/udunits2/lib
 
 # R-release environment path -----------------------------
 # conda create --name R-release -c conda-forge r-base radian gcc

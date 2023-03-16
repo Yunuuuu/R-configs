@@ -1,0 +1,14 @@
+linters: linters_with_defaults(
+    line_length_linter(120L),
+    infix_spaces_linter(c("/", "^"), allow_multiple_spaces = TRUE),
+    object_name_linter = NULL,
+    object_length_linter = NULL,
+    commented_code_linter = NULL,
+    trailing_blank_lines_linter = NULL,
+    trailing_whitespace_linter = NULL,
+    indentation_linter = NULL,
+    absolute_path_linter(),
+    any_is_na_linter(),
+    class_equals_linter(),
+    unused_import_linter()
+  )
