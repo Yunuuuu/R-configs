@@ -42,14 +42,22 @@ local({
 
 # setting RStudio Package Manager
 local({
+    # CRAN -----------------------------------------------------------
+    r <- getOption("repos")
+
+    # RStudio Package Manager ----
     # paste(R.version$year, R.version$month, R.version$day, sep = "-")
     # set a CRAN mirror
-    r <- getOption("repos")
     # repos.date <- "latest"
-    # r["CRAN"] <- paste0("https://packagemanager.rstudio.com/cran/",
-    # repos.date)
+    # r["CRAN"] <- paste0("https://packagemanager.rstudio.com/cran/", repos.date)
+
+    # Tsinghua mirror ------------
     r["CRAN"] <- "https://mirrors.tuna.tsinghua.edu.cn/CRAN/"
+
     options(repos = r)
+
+    # Bioconductor ---------------------------------------------------
+    options(BioC_mirror = "https://mirrors.tuna.tsinghua.edu.cn/bioconductor")
 
     # cat("\nDefault CRAN mirror snapshot taken on ", repos.date, ".", sep = "")
     # cat("\n", "See: https://packagemanager.rstudio.com.", sep = "")

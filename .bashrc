@@ -106,13 +106,12 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 # User specific aliases and functions
-alias r="~/anaconda3/envs/R-release/bin/radian --r-binary ~/anaconda3/envs/R-release/bin/R"
-alias R=~/anaconda3/envs/R-release/bin/R
-alias Rscript=~/anaconda3/envs/R-release/bin/Rscript
-alias pip3=~/anaconda3/envs/Python-release/bin/pip3
-alias pip=~/anaconda3/envs/Python-release/bin/pip
-alias tmux=~/anaconda3/envs/tmux/bin/tmux
-
+alias r="~/micromamba/envs/R-release/bin/radian --r-binary ~/micromamba/envs/R-release/bin/R"
+alias R=~/micromamba/envs/R-release/bin/R
+alias Rscript=~/micromamba/envs/R-release/bin/Rscript
+alias pip3=~/micromamba/envs/Python-release/bin/pip3
+alias pip=~/micromamba/envs/Python-release/bin/pip
+alias tmux=~/micromamba/envs/tmux/bin/tmux
 
 # Environment variable:
 export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
@@ -132,17 +131,19 @@ if [ -f ~/.bashrc_local ]; then
     source ~/.bashrc_local
 fi
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$($HOME/anaconda3/bin/conda 'shell.bash' 'hook' 2> /dev/null)"
+# >>> mamba initialize >>>
+# !! Contents within this block are managed by 'mamba init' !!
+export MAMBA_EXE="$HOME/.local/bin/micromamba";
+export MAMBA_ROOT_PREFIX="$HOME/micromamba";
+__mamba_setup="$("$MAMBA_EXE" shell hook --shell bash --prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
 if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
+    eval "$__mamba_setup"
 else
-    if [ -f "~/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "~/anaconda3/etc/profile.d/conda.sh"
+    if [ -f "$HOME/micromamba/etc/profile.d/micromamba.sh" ]; then
+        . "$HOME/micromamba/etc/profile.d/micromamba.sh"
     else
-        export PATH="~/anaconda3/bin:$PATH"
+        export  PATH="$HOME/micromamba/bin:$PATH"  # extra space after export prevents interference from conda init
     fi
 fi
-unset __conda_setup
-# <<< conda initialize <<<
+unset __mamba_setup
+# <<< mamba initialize <<<
