@@ -62,7 +62,8 @@ local({
     # export R_LD_LIBRARY_PATH=${R_LD_LIBRARY_PATH}:~/micromamba/envs/udunits2/lib
 
     # R-release environment path -----------------------------
-    # mamba create --name R-release -c conda-forge r-base radian gcc
+    # mamba create --name R-release -c conda-forge r-base radian gcc zlib
+    # libxml2-devel 
     mamba_renv <- file.path(mamba_env_dir, "R-release")
     add_envpath("PKG_CONFIG_PATH", mamba_renv, "lib", "pkgconfig")
 })
