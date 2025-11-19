@@ -1,4 +1,4 @@
-PATH=${PATH}:~/micromamba/envs/R-release/bin
+PATH=${PATH}:${MAMBA_ROOT_PREFIX}/envs/R-release/bin
 BIOCONDUCTOR_CONFIG_FILE=~/.bioconductor_config.yaml
 MKL_INTERFACE_LAYER=GNU,LP64
 MKL_THREADING_LAYER=GNU

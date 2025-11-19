@@ -15,7 +15,12 @@ local({
         expr[[env_var]] <- path
         eval(expr)
     }
-    mamba_env_dir <- "~/micromamba/envs" # your mamba environment # nolint
+    # your mamba environment # nolint
+    mamba_env_dir <- file.path(
+        Sys.getenv("MAMBA_ROOT_PREFIX"),
+        "envs",
+        fsep = "/"
+    )
 
     # pkg-specific PKG_CONFIG_PATH ---------------------------
     # these packages are not compitable with current mamba R environment, install
@@ -63,7 +68,7 @@ local({
 
     # R-release environment path -----------------------------
     # mamba create --name R-release -c conda-forge r-base radian gcc zlib
-    # libxml2-devel 
+    # libxml2-devel
     mamba_renv <- file.path(mamba_env_dir, "R-release")
     add_envpath("PKG_CONFIG_PATH", mamba_renv, "lib", "pkgconfig")
 })
